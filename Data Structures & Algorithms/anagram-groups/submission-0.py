@@ -1,8 +1,14 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        res = defaultdict(list)
+        
+        # sort the strings
+        # if the sorted string is in the hashmap, append the unsorted string 
+        # to the value 
 
-        for s in strs:
-            sortedS = ''.join(sorted(s))
-            res[sortedS].append(s)
-        return list(res.values())
+        sortedToUnsortedWords = defaultdict(list)
+
+        for i in range(len(strs)):
+            sortedWord = sorted(strs[i])
+            sortedToUnsortedWords[str(sortedWord)].append(strs[i])
+
+        return sortedToUnsortedWords.values()
